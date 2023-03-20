@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetGraduationStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">myapp.cli.StudentCommands</a> &gt; <span class="el_source">GetGraduationStatus.java</span></div><h1>GetGraduationStatus.java</h1><pre class="source lang-java linenums">package myapp.cli.StudentCommands;
+
+import java.util.concurrent.Callable;
+
+import myapp.db.StudentGateway;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+
+@Command(name=&quot;getGraduationStatus&quot;)
+<span class="fc" id="L10">public class GetGraduationStatus implements Callable&lt;Integer&gt;{</span>
+
+    @Option(names = {&quot;-u&quot;, &quot;--user&quot;}, description = &quot;Username&quot;)
+    String username;
+
+    @Override
+    public Integer call() throws Exception {
+<span class="fc" id="L17">        StudentGateway sg = new StudentGateway(username);</span>
+<span class="fc" id="L18">        String[] resPC = sg.getIncompleteProgramCore();</span>
+<span class="fc" id="L19">        float pendingCreditsPE = sg.getRemainingPE();</span>
+<span class="fc" id="L20">        float pendingCreditsHS = sg.getRemainingHS();</span>
+<span class="fc" id="L21">        float pendingCreditsSC = sg.getRemainingSC();</span>
+<span class="fc" id="L22">        float pendingCreditsOE = sg.getRemainingOE();</span>
+<span class="fc" id="L23">        int pending =0;</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">        if(!sg.checkIfBTPCompleted()){</span>
+<span class="fc" id="L25">            System.out.println(&quot;BTP not completed&quot;);</span>
+<span class="fc" id="L26">            pending++;</span>
+        }
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if(resPC != null){</span>
+<span class="fc" id="L29">            System.out.println(&quot;Program core courses not completed&quot;);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            for(String s: resPC){</span>
+<span class="fc" id="L31">                System.out.println(s);</span>
+            }
+<span class="fc" id="L33">            pending++;</span>
+        }
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if(pendingCreditsPE &gt; 0){</span>
+<span class="fc" id="L36">            System.out.println(&quot;Program elective credits not completed&quot;);</span>
+<span class="fc" id="L37">            System.out.println(&quot;Remaining credits: &quot; + pendingCreditsPE);</span>
+<span class="fc" id="L38">            pending++;</span>
+        }
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if(pendingCreditsHS &gt; 0){</span>
+<span class="fc" id="L41">            System.out.println(&quot;Humanities and social science credits not completed&quot;);</span>
+<span class="fc" id="L42">            System.out.println(&quot;Remaining credits: &quot; + pendingCreditsHS);</span>
+<span class="fc" id="L43">            pending++;</span>
+        }
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if(pendingCreditsSC &gt; 0){</span>
+<span class="fc" id="L46">            System.out.println(&quot;Science credits not completed&quot;);</span>
+<span class="fc" id="L47">            System.out.println(&quot;Remaining credits: &quot; + pendingCreditsSC);</span>
+<span class="fc" id="L48">            pending++;</span>
+        }
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if(pendingCreditsOE &gt; 0){</span>
+<span class="fc" id="L51">            System.out.println(&quot;Open elective credits not completed&quot;);</span>
+<span class="fc" id="L52">            System.out.println(&quot;Remaining credits: &quot; + pendingCreditsOE);</span>
+<span class="fc" id="L53">            pending++;</span>
+        }
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if(pending==0)System.out.println(&quot;Graduation requirements completed&quot;);   </span>
+<span class="fc" id="L56">        return 0;</span>
+    }
+    
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

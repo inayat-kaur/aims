@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AddDegreeCriteria.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">myapp.cli.AcadSecCommands</a> &gt; <span class="el_source">AddDegreeCriteria.java</span></div><h1>AddDegreeCriteria.java</h1><pre class="source lang-java linenums">package myapp.cli.AcadSecCommands;
+
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+
+import java.util.concurrent.Callable;
+
+import myapp.db.AcadSecGateway;
+
+@Command(name = &quot;add-degree-criteria&quot;, mixinStandardHelpOptions = true, description = &quot;Add degree criteria&quot;)
+<span class="fc" id="L11">public class AddDegreeCriteria implements Callable&lt;Integer&gt; {</span>
+
+    @Option(names = { &quot;-u&quot;, &quot;--username&quot; }, required = true, description = &quot;Username&quot;)
+    String username;
+
+    @Option(names = { &quot;-d&quot;, &quot;--dept&quot; }, required = true, description = &quot;Department&quot;, interactive = true)
+    String dept;
+
+    @Option(names = {&quot;-p&quot;, &quot;--program&quot;}, required = true, description = &quot;Program&quot;, interactive = true)
+    String program;
+
+    @Option(names = { &quot;-pc&quot;, &quot;--program-core&quot; }, required = true, description = &quot;p1,p2,p3...&quot;, interactive = true)
+    String programCore;
+
+    @Option(names = { &quot;-pe&quot;,
+            &quot;--program-elective&quot; }, required = true, description = &quot;Minimum credits for program elective&quot;, interactive = true)
+    float programElective;
+
+    @Option(names = {&quot;-hs&quot;, &quot;--humanities-elective&quot;}, required = true, description = &quot;Minimum credits for humanities and social elective&quot;, interactive = true)
+    float humanitiesElective;
+
+    @Option(names = {&quot;-sc&quot;, &quot;--science-elective&quot;}, required = true, description = &quot;Minimum credits for science elective&quot;, interactive = true)
+    float scienceElective;
+
+    @Option(names = {&quot;-oe&quot;, &quot;--open-elective&quot;}, required = true, description = &quot;Minimum credits for open elective&quot;, interactive = true)
+    float openElective;
+
+
+    @Option(names = { &quot;-btp&quot;, &quot;--btp&quot; }, required = true, description = &quot;btp1,btp2,...&quot;, interactive = true)
+    String btp;
+
+    public Integer call() throws Exception {
+<span class="fc" id="L43">        AcadSecGateway ag = new AcadSecGateway(username);</span>
+<span class="fc" id="L44">        String[] PC = programCore.split(&quot;,&quot;);</span>
+<span class="fc" id="L45">        String[] BTP = btp.split(&quot;,&quot;);</span>
+<span class="fc" id="L46">        ag.addDegreeCriteria(dept,program, PC, programElective, humanitiesElective, scienceElective, openElective, BTP);</span>
+<span class="fc" id="L47">        return 0;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

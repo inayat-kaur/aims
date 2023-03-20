@@ -1,0 +1,7 @@
+Student ID: s1cs@email
+Course ID: cs101 Year: 2018 Semester: 2 Grade: 10 Credits: 3.0
+Course ID: cs201 Year: 2018 Semester: 2 Grade: 9 Credits: 4.5
+Course ID: ma101 Year: 2018 Semester: 2 Grade: 9 Credits: 3.0
+Course ID: ph101 Year: 2018 Semester: 2 Grade: 8 Credits: 3.0
+Course ID: hs101 Year: 2018 Semester: 2 Grade: 10 Credits: 3.0
+Course ID: ee101 Year: 2018 Semester: 2 Grade: 8 Credits: 3.0
