@@ -23,8 +23,8 @@ public class AddRemoveEventTest {
         AddEvent addEvent = new AddEvent();
         addEvent.username = "acad@email";
         addEvent.event = "event1";
-        addEvent.startDate = java.sql.Date.valueOf("2021-01-01");
-        addEvent.endDate = java.sql.Date.valueOf("2021-01-02");
+        addEvent.startDate = "2021-01-01";
+        addEvent.endDate = "2021-01-02";
         addEvent.call();
         assertTrue(outContent.toString().contains("Event added"));
         addEvent.event = "ongoing";

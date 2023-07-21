@@ -3,11 +3,9 @@ package myapp.cli.FacultyCommands;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

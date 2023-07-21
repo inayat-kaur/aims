@@ -18,15 +18,15 @@ public class AddEvent implements Callable<Integer> {
     String event;
 
     @Option(names = { "-sd", "--startDate" }, description = "Start date of event (yyyy-mm-dd)", interactive = true)
-    Date startDate;
+    String startDate;
 
     @Option(names = { "-ed", "--endDate" }, description = "End date of event (yyyy-mm-dd)", interactive = true)
-    Date endDate;
+    String endDate;
 
     public Integer call() throws Exception {
         AcadSecGateway ag = new AcadSecGateway(username);
         if (!ag.checkEvent(event)) {
-            ag.addEvent(event, startDate, endDate);
+            ag.addEvent(event, java.sql.Date.valueOf(startDate), java.sql.Date.valueOf(endDate));
         } else {
             System.out.println("Event already exists");
         }

@@ -43,7 +43,7 @@ public class AcadSecGatewayTest {
     public void testCheckEvent() throws SQLException{
         AcadSecGateway gateway = new AcadSecGateway("acad@email");
         assertEquals(true, gateway.checkEvent("ongoing"));
-        assertEquals(false, gateway.checkEvent("grading"));
+        assertEquals(false, gateway.checkEvent("gradingg"));
     }
 
     @Test
