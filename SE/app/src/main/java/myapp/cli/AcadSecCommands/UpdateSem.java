@@ -15,14 +15,14 @@ public class UpdateSem implements Callable<Integer> {
     String username;
 
     @Option(names = {"-sd", "--startDate"}, description = "Start Date", required = true, interactive = true)
-    Date startDate;
+    String startDate;
 
     @Option(names = {"-ed", "--endDate"}, description = "End Date", required = true, interactive = true)
-    Date endDate;
+    String endDate;
 
     public Integer call() throws Exception {
         AcadSecGateway ag = new AcadSecGateway(username);
-        ag.updateSem(startDate, endDate);
+        ag.updateSem(java.sql.Date.valueOf(startDate), java.sql.Date.valueOf(endDate));
         return 0;
     }
 }

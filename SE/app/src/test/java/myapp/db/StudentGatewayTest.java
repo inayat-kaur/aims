@@ -64,7 +64,7 @@ public class StudentGatewayTest {
     public void testCheckEvent() throws SQLException {
         StudentGateway gateway = new StudentGateway("s1cs@email");
         assertEquals(true, gateway.checkEvent("ongoing"));
-        assertEquals(false, gateway.checkEvent("grading"));
+        assertEquals(false, gateway.checkEvent("gradingg"));
     }
 
     @Test

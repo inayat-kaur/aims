@@ -29,8 +29,8 @@ public class UpdateSemTest {
     public void testUpdateSem() throws Exception{
         UpdateSem us = new UpdateSem();
         us.username = "acad@email";
-        us.startDate = java.sql.Date.valueOf("2020-01-01");
-        us.endDate = java.sql.Date.valueOf("2020-06-01");
+        us.startDate = "2020-01-01";
+        us.endDate = "2020-06-01";
         us.call();
         assertTrue(outContent.toString().contains("Semester updated"));
         PreparedStatement st = conn.prepareStatement("delete from current_event where event = 'ongoing'");
